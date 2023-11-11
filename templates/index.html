@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Above & Beyond Networks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #007BFF;
+        }
+
+        form {
+            text-align: left;
+        }
+
+        label, input {
+            display: block;
+            margin: 5px 0;
+            
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: calc(100% - 10px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-align: right;
+            float: right;  /* Adiciona o alinhamento à direita */
+            width: auto;   /* Ajusta a largura para automática */
+            
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+         
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Labeling process</h1>
+        <form method="POST" action="{{ url_for('index') }}">
+
+            <label for="building_name">Building Name:</label>
+            <input type="text" name="building_name" class="narrow-input" required>
+            <label for="tower">Tower:</label>
+            <input type="text" name="tower" class="narrow-input" required>
+            <label for="level">Level:</label>
+            <input type="text" name="level" class="narrow-input" required>
+            <label for="qts_drops">Qts of Drops:</label>
+            <input type="number" name="qts_drops" required>
+            <input type="submit" value="Next">
+        </form>
+    </div>
+</body>
+</html>
