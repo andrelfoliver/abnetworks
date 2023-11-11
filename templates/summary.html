@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Summary - Above & Beyond Networks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Alinha o conteúdo no topo da página */
+            height: 100vh;
+            margin: 0;
+            padding-top: 20px; /* Adiciona espaço no topo */
+        }
+    
+        .container {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            max-width: 800px;
+        }
+    
+        h1 {
+            color: #007BFF;
+        }
+    
+        .summary-list {
+            list-style-type: none;
+            padding: 0;
+        }
+    
+        .summary-list li {
+            margin-bottom: 10px;
+        }
+    
+        .summary-list li span {
+            font-weight: bold;
+        }
+    
+        .fiber-data {
+            margin-top: 20px;
+        }
+    
+        .fiber-data h2 {
+            color: #007BFF;
+        }
+    
+        .tubes-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    
+        .tube-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+    
+        .tube {
+            width: calc(25% - 20px); /* Para ter quatro tubos por linha com algum espaço entre eles */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+    
+        .tube p {
+            font-weight: bold;
+        }
+
+        .color-box {
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            margin-right: 5px;
+            border: 1px solid #000; /* Adiciona uma borda preta ao redor dos quadrados */
+        }
+
+        .color-1 { background-color: blue; }
+        .color-2 { background-color: orange; }
+        .color-3 { background-color: green; }
+        .color-4 { background-color: brown; }
+        .color-5 { background-color: grey; }
+        .color-6 { background-color: white; }
+        .color-7 { background-color: red; }
+        .color-8 { background-color: black; }
+        .color-9 { background-color: yellow; }
+        .color-10 { background-color: violet; }
+        .color-11 { background-color: pink; }
+        .color-12 { background-color: aqua; }
+
+        .next-button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            align-items: right;
+
+        }.next-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Summary</h1>
+        <ul class="summary-list">
+            <li><span>Building Name:</span> {{ session.get('building_name') }}</li>
+            <li><span>Tower:</span> {{ session.get('tower') }}</li>
+            <li><span>Level:</span> {{ session.get('level') }}</li>
+            <li><span>Qts of Drops:</span> {{ session.get('qts_drops') }}</li>
+        </ul>
+
+        <div class="fiber-data">
+            <h2>Data from Fibers:</h2>
+            <table class="tubes-table">
+                <tr>
+                    {% for tube, fibers in fibers_data.items() %}
+                        <td class="tube">
+                            <p>Tube {{ tube }}:</p>
+                            <ul style="list-style-type: none; padding-left: 0; text-align: left;">
+                                {% for color, value in fibers.items() %}
+                                    <li><span class="color-box color-{{ color }}"></span> {{ value }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        {% if loop.index % 4 == 0 %}
+                        </tr><tr> <!-- Feche e abra uma nova linha a cada 4 tubos -->
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+
+                <a href="{{ url_for('index') }}">
+                    <button type="button" class="next-button">Add new level</button>
+                </a>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
