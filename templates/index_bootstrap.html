@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abnetworks</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Custom CSS -->
+   <link rel="stylesheet" href="{{ url_for('static', filename='index_bootstrap.css') }}">
+
+
+</head>
+<body class="bg-light">
+    <!-- Nav -->
+        <div class="container">
+            <h1> Labeling process </h1>
+            <form method="post" action="{{ url_for('index') }}">
+                <div class="input-group mb-4">
+                    <label for="building_name">Building Name:</label>
+                    <input type="text" class="form-control mx-2" id="building_name" name="building_name" required>
+                    <label for="tower">Tower:</label>
+                    <input type="text" class="form-control mx-2" id="tower" name="tower" required>
+                </div>
+                <div class="input-group mb-4">
+                    <label for="Level">Level:</label>
+                    <input type="text" class="form-control mx-2" id="Level" name="level" required>
+                    <label for="qts_drops">Qty. Drops:</label>
+                    <input type="text" class="form-control mx-2" id="qts_drops" name="qts_drops" required>
+                </div>
+                <div class="input">
+                    <input type="submit" value="Submit">
+                </div>
+                     <!-- Add this line to store the value of qts_tubes in a hidden element -->
+                 <input type="hidden" id="qts_tubes_value" value="{{ qts_tubes }}">
+            </form>
+        </div>
+        {% if qts_tubes is defined %}
+        <div class="container">
+            <h1>Fibers</h1>
+            <p>Number of Tubes Generated: {{ qts_tubes }}</p>
+            <div class="scroll-container">
+                <div class="fiber-container" id="fibers-form">
+                    <!-- Campos de entrada de tubos e fibras serão gerados automaticamente aqui -->
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>
