@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fibers</title>
+    <!-- Add Bootstrap CSS link here if needed -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <!-- Custom CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='fibers_bootstrap.css') }}"
+    />
+  </head>
+  <body data-qts-tubes="{{ qts_tubes }}">
+    <form method="POST" action="{{ url_for('summary') }}">
+      <div class="container">
+        <h1>Fibers</h1>
+        <p>Number of Tubes Generated: {{ qts_tubes }}</p>
+        <div class="scroll-container">
+          <div class="fiber-container input-group" id="fibers-form">
+            <!-- Dynamic generation of fiber input fields will go here -->
+          </div>
+        </div>
+        <!-- Adicione o botão "Back" -->
+        <a href="{{ url_for('index') }}">
+          <button type="button" class="back-button">Back</button>
+        </a>
+        <button type="submit" class="next-button">Next</button>
+      </div>
+    </form>
+
+    <!-- Add Bootstrap JS script here if needed -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Add your custom script.js file here -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

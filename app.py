@@ -15,6 +15,7 @@ def index():
         qts_drops = request.form.get('qts_drops')
         qts_drops = int(qts_drops)
         qts_tubes = (qts_drops + 11) // 12  # Calcula a quantidade de tubos arredondando para cima
+        #qts_tubes = 'test'
 
         # Armazene os dados na sessão
         session['building_name'] = building_name
@@ -23,11 +24,18 @@ def index():
         session['qts_drops'] = qts_drops
         session['qts_tubes'] = qts_tubes
 
+        print("Reached here")
+        app.logger.info("Reached here")
+
 
         # Redirecione para a página 'fibers'
-        #return redirect(url_for('/index'))
+        return redirect(url_for('fibers'))
 
     return render_template('index_bootstrap.html')
+@app.route('/fibers', methods=['GET','POST'])
+def fibers():
+    qts_tubes = session.get('qts_tubes')
+    return render_template('fibers_bootstrap.html', qts_tubes=qts_tubes)
 
 # Passo 1: Crie uma nova rota para a página de resumo
 @app.route('/summary', methods=['GET', 'POST'])
@@ -49,6 +57,6 @@ def summary():
             fibers_data.setdefault(tube_number, {})[fiber_number] = value
 
     # Passo 3: Renderize um modelo HTML com os dados coletados
-    return render_template('summary.html', building_name=building_name, tower=tower, level=level, qts_drops=qts_drops, qts_tubes=qts_tubes, fibers_data=fibers_data)
+    return render_template('summary_bootstrap.html', building_name=building_name, tower=tower, level=level, qts_drops=qts_drops, qts_tubes=qts_tubes, fibers_data=fibers_data)
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+    app.run(debug=True, port=5000)
